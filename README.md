@@ -2,7 +2,7 @@
 
 Some applications are published to multiple environments, such as 'development', 'staging', 'UAT' or 'production'. 
 As the applications commonly look alike, users can get confused as to which environment they have logged into. 
-This module adds an element and label to application pages that allows users to quickly identify the environment. 
+This module adds an element and label to application pages so users can quickly identify an environment. 
 
 ![Environment Identifyer Display Example](images/BarDisplayExample.png)
 
@@ -74,7 +74,7 @@ Environments List Example
 ```
 5. Drag the "EnvironmentIdentifyer" global script into the Event Handler (below the *List*)
 6. Enter parameters for the script
-   1. BarPosition: the location where the bar will be shown (e.g. top, left or bottom)
+   1. BarPosition: the location where the bar will be shown (e.g. top, left or bottom). The default is top
    2. Environments: Select the List containing the environments defined above from the dropdown
 
 ![Script Parameters Example](images/GlobalScriptInputs.png)
