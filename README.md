@@ -54,7 +54,7 @@ for (let i = 0; i < environments.length; i++) {
 4. Define the environments
    1. *url*: the url of the environment or part thereof (e.g. localhost)
    2. *class*: a class that will be attached to the environment identifying element when the url input matches the url in the address bar
-   3. *title*: the name of the environment. this will be shown inside the environment identifyer
+   3. *title*: the name of the environment. This will be shown inside the environment identifyer
 
 Environments List Example
 ```json
@@ -74,7 +74,7 @@ Environments List Example
 ```
 5. Drag the "EnvironmentIdentifyer" global script into the Event Handler (below the *List*)
 6. Enter parameters for the script
-   1. BarPosition: the location where the bar will be shown (e.g. top, left or bottom). The default is top
+   1. BarPosition: the location where the bar will be shown. Supported are: top, left, right or bottom. The default is top
    2. Environments: Select the List containing the environments defined above from the dropdown
 
 ![Script Parameters Example](images/GlobalScriptInputs.png)
