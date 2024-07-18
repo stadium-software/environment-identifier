@@ -80,9 +80,11 @@ Environments List Example
 ![Script Parameters Example](images/GlobalScriptInputs.png)
 
 ## Environments Custom Styling
-Add CSS to the Stylesheet for each environment class you defined in the "EnvironmentsList". For example: 
+Add CSS to the Stylesheet for each environment class you defined in the "EnvironmentsList". Here you can define what the environment identifyer will look like. 
 
-```CSS
+For example: 
+
+```css
 .staging {
 	background-color: #924370;
 	color: white;
