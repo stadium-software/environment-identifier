@@ -59,7 +59,7 @@ for (let i = 0; i < environments.length; i++) {
 Environments List Example
 ```json
 = [{
-	"url": "staging.stadium.software",
+	"url": "stadium.software/staging",
 	"class": "staging",
 	"text": "Staging"
 },{
