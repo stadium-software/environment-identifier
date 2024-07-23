@@ -4,20 +4,20 @@ Some applications are published to multiple environments, such as 'development',
 As the applications commonly look alike, users can get confused as to which environment they have logged into. 
 This module adds an element and label to application pages so users can quickly identify an environment. 
 
-![Environment Identifyer Display Example](images/BarDisplayExample.png)
+![Environment identifier Display Example](images/BarDisplayExample.png)
 
 ## Version
 1.0 - initial
 
 # Global Script Setup
-1. Create a Global Script called "EnvironmentIdentifyer"
+1. Create a Global Script called "Environmentidentifier"
 2. Add the input parameters below to the Global Script
    1. BarPosition
    2. Environments
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below into the JavaScript code property
 ```javascript
-/* Stadium Script 1.0 https://github.com/stadium-software/environment-identifyer */
+/* Stadium Script 1.0 https://github.com/stadium-software/environment-identifier */
 let position = ~.Parameters.Input.BarPosition;
 let environments = ~.Parameters.Input.Environments;
 let arrPositions = ['top', 'right', 'bottom', 'left'];
@@ -54,7 +54,7 @@ for (let i = 0; i < environments.length; i++) {
 4. Define the environments
    1. *url*: the url of the environment or part thereof (e.g. localhost)
    2. *class*: a class that will be attached to the environment identifying element when the url input matches the url in the address bar
-   3. *title*: the name of the environment. This will be shown inside the environment identifyer
+   3. *title*: the name of the environment. This will be shown inside the environment identifier
 
 Environments List Example
 ```json
@@ -72,7 +72,7 @@ Environments List Example
 	"text": "Development"
 }]
 ```
-5. Drag the "EnvironmentIdentifyer" global script into the Event Handler (below the *List*)
+5. Drag the "EnvironmentIdentifier" global script into the Event Handler (below the *List*)
 6. Enter parameters for the script
    1. BarPosition: the location where the bar will be shown. Supported are: top, left, right or bottom. The default is top
    2. Environments: Select the List containing the environments defined above from the dropdown
@@ -80,7 +80,7 @@ Environments List Example
 ![Script Parameters Example](images/GlobalScriptInputs.png)
 
 ## Environments Custom Styling
-Add CSS to the Stylesheet for each environment class you defined in the "EnvironmentsList". Here you can define what the environment identifyer will look like. 
+Add CSS to the Stylesheet for each environment class you defined in the "EnvironmentsList". Here you can define what the environment identifier will look like. 
 
 For example: 
 
