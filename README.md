@@ -10,7 +10,7 @@ This module adds an element and label to application pages so users can quickly 
 1.0 - initial
 
 # Global Script Setup
-1. Create a Global Script called "Environmentidentifier"
+1. Create a Global Script called "EnvironmentIdentifier"
 2. Add the input parameters below to the Global Script
    1. BarPosition
    2. Environments
