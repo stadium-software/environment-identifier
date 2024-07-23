@@ -1,4 +1,4 @@
-# Environment Identifyer
+# Environment Identifier
 
 Some applications are published to multiple environments, such as 'development', 'staging', 'UAT' or 'production'. 
 As the applications commonly look alike, users can get confused as to which environment they have logged into. 
