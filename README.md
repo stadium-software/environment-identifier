@@ -9,7 +9,7 @@ This module adds an element and label to application pages so users can quickly 
 ## Version
 1.0 - initial
 
-1.1 Fixed type bug - change 'title' to 'text'
+1.1 Fixed script bug - change 'text' to 'title'
 
 # Global Script Setup
 1. Create a Global Script called "EnvironmentIdentifier"
@@ -30,7 +30,7 @@ for (let i = 0; i < environments.length; i++) {
     if (window.location.href.indexOf(environments[i].url) > -1 && !document.body.querySelector(".environment-top-bar")) {
         let environmentBar = document.createElement('div');
         environmentBar.classList.add(environments[i].class, "environment-top-bar", "environment-top-bar-" + position);
-        environmentBar.textContent = environments[i].text;
+        environmentBar.textContent = environments[i].title;
         document.body.appendChild(environmentBar);
         if (position == 'top') {
             let hd = document.querySelector('.header');
@@ -45,7 +45,7 @@ for (let i = 0; i < environments.length; i++) {
 2. Add the following properties to the type
    1. url (Any)
    2. class (Any)
-   3. text (Any)
+   3. title (Any)
 
 ![Type Setup](images/EnvironmentType.png)
 
@@ -56,22 +56,22 @@ for (let i = 0; i < environments.length; i++) {
 4. Define the environments
    1. *url*: the url of the environment or part thereof (e.g. localhost)
    2. *class*: a class that will be attached to the environment identifying element when the url input matches the url in the address bar
-   3. *text*: the name of the environment. This will be shown inside the environment identifier
+   3. *title*: the name of the environment. This will be shown inside the environment identifier
 
 Environments List Example
 ```json
 = [{
 	"url": "stadium.software/staging",
 	"class": "staging",
-	"text": "Staging"
+	"title": "Staging"
 },{
 	"url": "uat.stadium.software",
 	"class": "uat",
-	"text": "UAT"
+	"title": "UAT"
 },{
 	"url": "localhost",
 	"class": "development",
-	"text": "Development"
+	"title": "Development"
 }]
 ```
 5. Drag the "EnvironmentIdentifier" global script into the Event Handler (below the *List*)
