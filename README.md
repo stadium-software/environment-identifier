@@ -9,6 +9,8 @@ This module adds an element and label to application pages so users can quickly 
 ## Version
 1.0 - initial
 
+1.1 Fixed type bug - change 'title' to 'text'
+
 # Global Script Setup
 1. Create a Global Script called "EnvironmentIdentifier"
 2. Add the input parameters below to the Global Script
@@ -17,7 +19,7 @@ This module adds an element and label to application pages so users can quickly 
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below into the JavaScript code property
 ```javascript
-/* Stadium Script 1.0 https://github.com/stadium-software/environment-identifier */
+/* Stadium Script 1.1 https://github.com/stadium-software/environment-identifier */
 let position = ~.Parameters.Input.BarPosition;
 let environments = ~.Parameters.Input.Environments;
 let arrPositions = ['top', 'right', 'bottom', 'left'];
@@ -43,7 +45,7 @@ for (let i = 0; i < environments.length; i++) {
 2. Add the following properties to the type
    1. url (Any)
    2. class (Any)
-   3. title (Any)
+   3. text (Any)
 
 ![Type Setup](images/EnvironmentType.png)
 
@@ -54,7 +56,7 @@ for (let i = 0; i < environments.length; i++) {
 4. Define the environments
    1. *url*: the url of the environment or part thereof (e.g. localhost)
    2. *class*: a class that will be attached to the environment identifying element when the url input matches the url in the address bar
-   3. *title*: the name of the environment. This will be shown inside the environment identifier
+   3. *text*: the name of the environment. This will be shown inside the environment identifier
 
 Environments List Example
 ```json
