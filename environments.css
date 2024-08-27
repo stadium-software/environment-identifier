@@ -1,5 +1,5 @@
 body {
-    padding-top: var(--environment-bar-size);
+    padding-top: var(--environment-bar-size, 20px);
 }
 .environment-top-bar {
     position: fixed;
@@ -8,14 +8,14 @@ body {
     align-content: center;
     justify-content: center;
     width: 100vw;
-    height: var(--environment-bar-size);
+    height: var(--environment-bar-size, 20px);
     z-index: 999;
     user-select: none;
     top: 0;
 }
 body:has(.environment-top-bar-bottom) {
     padding-top: 0;
-    padding-bottom: var(--environment-bar-size);
+    padding-bottom: var(--environment-bar-size, 20px);
 }
 .environment-top-bar-bottom {
     bottom: 0;
@@ -23,23 +23,23 @@ body:has(.environment-top-bar-bottom) {
 }
 body:has(.environment-top-bar-right) {
     padding-top: 0;
-    padding-right: var(--environment-bar-size);
+    padding-right: var(--environment-bar-size, 20px);
 }
 .environment-top-bar-right {
     right: 0;
     writing-mode: vertical-rl;
     text-orientation: upright;
     height: 100vh;
-    width: var(--environment-bar-size);
+    width: var(--environment-bar-size, 20px);
 }
 body:has(.environment-top-bar-left) {
     padding-top: 0;
-    padding-left: var(--environment-bar-size);
+    padding-left: var(--environment-bar-size, 20px);
 }
 .environment-top-bar-left {
     left: 0;
     writing-mode: vertical-rl;
     text-orientation: upright;
     height: 100vh;
-    width: var(--environment-bar-size);
+    width: var(--environment-bar-size, 20px);
 }
