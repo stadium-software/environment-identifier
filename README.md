@@ -11,6 +11,8 @@ This module adds an element and label to application pages so users can quickly 
 
 1.1 Fixed script bug - change 'text' to 'title'
 
+1.2 Optimised script code
+
 # Global Script Setup
 1. Create a Global Script called "EnvironmentIdentifier"
 2. Add the input parameters below to the Global Script
@@ -19,12 +21,11 @@ This module adds an element and label to application pages so users can quickly 
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below into the JavaScript code property
 ```javascript
-/* Stadium Script 1.1 https://github.com/stadium-software/environment-identifier */
-let position = ~.Parameters.Input.BarPosition;
+/* Stadium Script 1.2 https://github.com/stadium-software/environment-identifier */
+let position = ~.Parameters.Input.BarPosition || "top";
 let environments = ~.Parameters.Input.Environments;
-let arrPositions = ['top', 'right', 'bottom', 'left'];
-if (!position || !arrPositions.includes(position.toLowerCase())) { 
-    position = 'top';
+if (!['top', 'right', 'bottom', 'left'].includes(position)) {
+	position = 'top';
 }
 for (let i = 0; i < environments.length; i++) {
     if (window.location.href.indexOf(environments[i].url) > -1 && !document.body.querySelector(".environment-top-bar")) {
