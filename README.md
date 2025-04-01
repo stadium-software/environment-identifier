@@ -4,7 +4,7 @@ Some applications are published to multiple environments, such as 'development',
 As the applications commonly look alike, users can get confused as to which environment they have logged into. 
 This module adds an element and label to application pages so users can quickly identify an environment. 
 
-![Environment identifier Display Example](images/BarDisplayExample.png)
+Want v1? [Go here](v1/)
 
 ## Version
 2.0 Allows for custom indicator styling; added optional auto-hide
