@@ -84,7 +84,7 @@ Environments List Example
    1. Environments: Select the List containing the environments defined above from the dropdown
    2. AutoHide (boolean): When set to true, the environment indicator is hidden while the user moves the mouse
 
-![Script Parameters Example](images/GlobalScriptInputs.png)
+![Script Parameters Example](images/ScriptInputs.png)
 
 ## Environment Indicator Styling
 While version 1 of this module provided for a fixed bar on the page, this module does not prescribe a specific display style for the environment indicator. While this allows for the indicator to be flexibly displayed using any style, it also means that CSS needs to be added to the application stylesheet to define a style. 
