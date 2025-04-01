@@ -13,15 +13,17 @@ This module adds an element and label to application pages so users can quickly 
 
 1.2 Optimised script code
 
+1.3 Moved environment bar attachment to container from body; converted px to rem; updated readme for 6.12+
+
 # Global Script Setup
 1. Create a Global Script called "EnvironmentIdentifier"
 2. Add the input parameters below to the Global Script
    1. BarPosition
    2. Environments
 3. Drag a *JavaScript* action into the script
-4. Add the Javascript below into the JavaScript code property
+4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
-/* Stadium Script 1.2 https://github.com/stadium-software/environment-identifier */
+/* Stadium Script 1.3 https://github.com/stadium-software/environment-identifier */
 let position = ~.Parameters.Input.BarPosition || "top";
 let environments = ~.Parameters.Input.Environments;
 if (!['top', 'right', 'bottom', 'left'].includes(position)) {
@@ -32,7 +34,7 @@ for (let i = 0; i < environments.length; i++) {
         let environmentBar = document.createElement('div');
         environmentBar.classList.add(environments[i].class, "environment-top-bar", "environment-top-bar-" + position);
         environmentBar.textContent = environments[i].title;
-        document.body.appendChild(environmentBar);
+        document.querySelector(".container").appendChild(environmentBar);
         if (position == 'top') {
             let hd = document.querySelector('.header');
             hd.style.setProperty('top', 'calc(' + window.getComputedStyle(hd).getPropertyValue("top") + ' + ' + window.getComputedStyle(document.body).getPropertyValue("--environment-bar-size") + ')');
@@ -108,22 +110,43 @@ For example:
 }
 ```
 
-## Module CSS
-Follow the instructions below to implement the module CSS (required for the correct functioning of the module). 
-Some elements can be [customised](#customising-css) using a variables CSS file. 
+## CSS
+The CSS below is required for the correct functioning of the module. Variables exposed in the [*environment-variables.css*](environment-variables.css) file can be [customised](#customising-css).
 
+### Before v6.12
 1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the two CSS files from this repo [*environments-variables.css*](environments-variables.css) and [*environments.css*](environments.css) into that folder
-3. Paste the link tags below into the "head" property of your application
+2. Drag the two CSS files from this repo [*environment-variables.css*](environment-variables.css) and [*environment.css*](environment.css) into that folder
+3. Paste the link tags below into the *head* property of your application
 ```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environments.css">
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environments-variables.css">
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment.css">
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment-variables.css">
 ``` 
 
-## Customising the Module CSS
-1. Open the CSS file called [*environments-variables.css*](environments-variables.css) from this repo
-2. Adjust the variables in the *:root* element as you see fit
-3. Overwrite the file in the CSS folder of your application with the customised file
+### v6.12+
+1. Create a folder called "CSS" inside of your Embedded Files in your application
+2. Drag the CSS files from this repo [*environment.css*](environment.css) into that folder
+3. Paste the link tag below into the *head* property of your application
+```html
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment.css">
+``` 
 
-## CSS Upgrading
-To upgrade the CSS in this module, follow the [steps outlined in this repo](https://github.com/stadium-software/samples-upgrading)
+### Customising CSS
+1. Open the CSS file called [*environment-variables.css*](environment-variables.css) from this repo
+2. Adjust the variables in the *:root* element as you see fit
+3. Stadium 6.12+ users can comment out any variable they do **not** want to customise
+4. Add the [*environment-variables.css*](environment-variables.css) to the "CSS" folder in the EmbeddedFiles (overwrite)
+5. Paste the link tag below into the *head* property of your application (if you don't already have it there)
+```html
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment-variables.css">
+``` 
+6. Add the file to the "CSS" inside of your Embedded Files in your application
+
+**NOTE: Do not change any of the CSS in the 'environment.css' file**
+
+## Upgrading Stadium Repos
+Stadium Repos are not static. They change as additional features are added and bugs are fixed. Using the right method to work with Stadium Repos allows for upgrading them in a controlled manner. 
+
+How to use and update application repos is described here: [Working with Stadium Repos](https://github.com/stadium-software/samples-upgrading)
+
+## Known Issues
+When attaching the environment indicator to the top of the page, it can obstruct other elements attached to the same position. In such cases consider attaching the environment indicator to the bottom of the page instead. 

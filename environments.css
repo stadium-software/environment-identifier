@@ -1,5 +1,5 @@
-body {
-    padding-top: var(--environment-bar-size, 20px);
+.container:has(.environment-top-bar) {
+    padding-top: var(--environment-bar-size, 2rem);
 }
 .environment-top-bar {
     position: fixed;
@@ -8,38 +8,42 @@ body {
     align-content: center;
     justify-content: center;
     width: 100vw;
-    height: var(--environment-bar-size, 20px);
-    z-index: 999;
+    height: var(--environment-bar-size, 2rem);
+    z-index: 1100;
     user-select: none;
     top: 0;
 }
-body:has(.environment-top-bar-bottom) {
+.container:has(.environment-top-bar-bottom) {
     padding-top: 0;
-    padding-bottom: var(--environment-bar-size, 20px);
+    padding-bottom: var(--environment-bar-size, 2rem);
 }
 .environment-top-bar-bottom {
     bottom: 0;
     top: inherit;
 }
-body:has(.environment-top-bar-right) {
+.container:has(.environment-top-bar-right) {
     padding-top: 0;
-    padding-right: var(--environment-bar-size, 20px);
+    padding-right: var(--environment-bar-size, 2rem);
 }
 .environment-top-bar-right {
     right: 0;
     writing-mode: vertical-rl;
     text-orientation: upright;
     height: 100vh;
-    width: var(--environment-bar-size, 20px);
+    width: var(--environment-bar-size, 2rem);
 }
-body:has(.environment-top-bar-left) {
+.container:has(.environment-top-bar-left) {
     padding-top: 0;
-    padding-left: var(--environment-bar-size, 20px);
+    padding-left: var(--environment-bar-size, 2rem);
 }
 .environment-top-bar-left {
     left: 0;
     writing-mode: vertical-rl;
     text-orientation: upright;
     height: 100vh;
-    width: var(--environment-bar-size, 20px);
+    width: var(--environment-bar-size, 2rem);
+}
+html {
+    min-height: 100%;
+    font-size: 62.5%;
 }
