@@ -91,7 +91,7 @@ While version 1 of this module provided for a fixed bar on the page, this module
 
 **Example styles**
 
-Classic top bar (top)
+Classic bar (top)
 ```css
 .environment-indicator {
     position: fixed;
@@ -109,6 +109,7 @@ Classic top bar (top)
 }
 ```
 
+Classic bar with Auto-Hide on
 ![](images/Style1.gif)
 
 Floating oval (top right)
@@ -128,6 +129,7 @@ Floating oval (top right)
 }
 ```
 
+Floatign oval with Auto-Hide on
 ![](images/Style2.gif)
 
 Minimal bar (top)
@@ -148,6 +150,7 @@ Minimal bar (top)
 }
 ```
 
+Minimal Bar with Auto-Hide off
 ![](images/Style3.png)
 
 ## Environments Custom Styling
