@@ -4,10 +4,10 @@ Some applications are published to multiple environments, such as 'development',
 As the applications commonly look alike, users can get confused as to which environment they have logged into. 
 This module adds an element and label to application pages so users can quickly identify an environment. 
 
-Want v1? [Go here](v1/)
-
 ## Version
 2.0 Allows for custom indicator styling; added optional auto-hide
+
+Want v1? [Go here](v1/)
 
 # Global Script Setup
 1. Create a Global Script called "EnvironmentIdentifier"
@@ -129,7 +129,7 @@ Classic bar with Auto-Hide on
 }
 ```
 
-Floatign oval with Auto-Hide on
+Floating oval with Auto-Hide on
 ![](images/Style2.gif)
 
 ### Minimal bar (top)
