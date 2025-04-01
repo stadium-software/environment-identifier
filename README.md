@@ -7,39 +7,41 @@ This module adds an element and label to application pages so users can quickly 
 ![Environment identifier Display Example](images/BarDisplayExample.png)
 
 ## Version
-1.0 - initial
-
-1.1 Fixed script bug - change 'text' to 'title'
-
-1.2 Optimised script code
-
-1.3 Moved environment bar attachment to container from body; converted px to rem; updated readme for 6.12+
+2.0 Allows for custom indicator styling; added optional auto-hide
 
 # Global Script Setup
 1. Create a Global Script called "EnvironmentIdentifier"
 2. Add the input parameters below to the Global Script
-   1. BarPosition
-   2. Environments
+   1. Environments
+   2. AutoHide
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
-/* Stadium Script 1.3 https://github.com/stadium-software/environment-identifier */
-let position = ~.Parameters.Input.BarPosition || "top";
+/* Stadium Script 2.0 https://github.com/stadium-software/environment-identifier */
 let environments = ~.Parameters.Input.Environments;
-if (!['top', 'right', 'bottom', 'left'].includes(position)) {
-	position = 'top';
-}
+if (!Array.isArray(environments)) environments = [];
+let autoHide = ~.Parameters.Input.AutoHide || false;
+let environmentIndicator = document.querySelector(".environment-indicator");
 for (let i = 0; i < environments.length; i++) {
-    if (window.location.href.indexOf(environments[i].url) > -1 && !document.body.querySelector(".environment-top-bar")) {
-        let environmentBar = document.createElement('div');
-        environmentBar.classList.add(environments[i].class, "environment-top-bar", "environment-top-bar-" + position);
-        environmentBar.textContent = environments[i].title;
-        document.querySelector(".container").appendChild(environmentBar);
-        if (position == 'top') {
-            let hd = document.querySelector('.header');
-            hd.style.setProperty('top', 'calc(' + window.getComputedStyle(hd).getPropertyValue("top") + ' + ' + window.getComputedStyle(document.body).getPropertyValue("--environment-bar-size") + ')');
-        }
+    if (window.location.href.indexOf(environments[i].url) > -1 && !environmentIndicator) {
+        let environmentIndicator = document.createElement('div');
+        environmentIndicator.classList.add(environments[i].class, "environment-indicator");
+        environmentIndicator.textContent = environments[i].title;
+        document.querySelector(".container").appendChild(environmentIndicator);
     }
+}
+if (autoHide) {
+    let timer;
+    document.addEventListener(`mousemove`, () => {
+        let ev = document.querySelector(".environment-indicator");
+	    if (ev) ev.style.display = "none";
+	    clearTimeout(timer);
+	    timer = setTimeout(mouseStopped, 1000);
+	});
+}
+function mouseStopped(){
+    let ev = document.querySelector(".environment-indicator");
+    if (ev) ev.style.display = "grid";
 }
 ```
 
@@ -79,13 +81,77 @@ Environments List Example
 ```
 5. Drag the "EnvironmentIdentifier" global script into the Event Handler (below the *List*)
 6. Enter parameters for the script
-   1. BarPosition: the location where the bar will be shown. Supported are: top, left, right or bottom. The default is top
-   2. Environments: Select the List containing the environments defined above from the dropdown
+   1. Environments: Select the List containing the environments defined above from the dropdown
+   2. AutoHide (boolean): When set to true, the environment indicator is hidden while the user moves the mouse
 
 ![Script Parameters Example](images/GlobalScriptInputs.png)
 
+## Environment Indicator Styling
+While version 1 of this module provided for a fixed bar on the page, this module does not prescribe a specific display style for the environment indicator. While this allows for the indicator to be flexibly displayed using any style, it also means that CSS needs to be added to the application stylesheet to define a style. 
+
+**Example styles**
+
+Classic top bar (top)
+```css
+.environment-indicator {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    width: 100vw;
+	margin-left: -15px;
+    height: 0.5rem;
+    z-index: 1100;
+    user-select: none;
+    top: 0; 
+	/* bottom:0; to place at bottom */
+}
+```
+
+![](images/Style1.gif)
+
+Floating oval (top right)
+```css
+.environment-indicator {
+	position: fixed;
+	top: 0.4rem;
+	right: 2.5rem;
+	border-radius: 50%;
+	width: 6rem;
+	height: 2rem;
+	z-index: 2000;
+    user-select: none;
+	display: grid;
+	place-content: center;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+```
+
+![](images/Style2.gif)
+
+Minimal bar (top)
+```css
+.environment-indicator {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    width: 200px;
+    height: 10px;
+    z-index: 1100;
+    user-select: none;
+    top: 0;
+    left: calc(50% - 100px);
+    border-radius: 6px;
+}
+```
+
+![](images/Style3.png)
+
 ## Environments Custom Styling
-Add CSS to the Stylesheet for each environment class you defined in the "EnvironmentsList". Here you can define what the environment identifier will look like. 
+Additionally, CSS is needed in the Stylesheet for each environment class you defined in the "EnvironmentsList". Here you can define what the environment identifier will look like in each environment. 
 
 For example: 
 
@@ -93,60 +159,24 @@ For example:
 .staging {
 	background-color: #924370;
 	color: white;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: bold;
 }
 .uat {
 	background-color: #97F48A;
 	color: #555;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: bold;
 }
 .development {
 	background-color: #333;
 	color: #fff;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: bold;
 }
 ```
-
-## CSS
-The CSS below is required for the correct functioning of the module. Variables exposed in the [*environment-variables.css*](environment-variables.css) file can be [customised](#customising-css).
-
-### Before v6.12
-1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the two CSS files from this repo [*environment-variables.css*](environment-variables.css) and [*environment.css*](environment.css) into that folder
-3. Paste the link tags below into the *head* property of your application
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment.css">
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment-variables.css">
-``` 
-
-### v6.12+
-1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the CSS files from this repo [*environment.css*](environment.css) into that folder
-3. Paste the link tag below into the *head* property of your application
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment.css">
-``` 
-
-### Customising CSS
-1. Open the CSS file called [*environment-variables.css*](environment-variables.css) from this repo
-2. Adjust the variables in the *:root* element as you see fit
-3. Stadium 6.12+ users can comment out any variable they do **not** want to customise
-4. Add the [*environment-variables.css*](environment-variables.css) to the "CSS" folder in the EmbeddedFiles (overwrite)
-5. Paste the link tag below into the *head* property of your application (if you don't already have it there)
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/environment-variables.css">
-``` 
-6. Add the file to the "CSS" inside of your Embedded Files in your application
-
-**NOTE: Do not change any of the CSS in the 'environment.css' file**
 
 ## Upgrading Stadium Repos
 Stadium Repos are not static. They change as additional features are added and bugs are fixed. Using the right method to work with Stadium Repos allows for upgrading them in a controlled manner. 
 
 How to use and update application repos is described here: [Working with Stadium Repos](https://github.com/stadium-software/samples-upgrading)
-
-## Known Issues
-When attaching the environment indicator to the top of the page, it can obstruct other elements attached to the same position. In such cases consider attaching the environment indicator to the bottom of the page instead. 
