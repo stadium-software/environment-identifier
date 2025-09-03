@@ -143,7 +143,7 @@ Create a type called "Environment"
 ![Type Import](images/TypeImport.png)
 
 2. In the `Import Type` popup
-    1. Add "SelectedFilters" into the `Name` input field
+    1. Add "Environment" into the `Name` input field
     2. Copy & paste the JSON below into the main input area
 
 ```json
