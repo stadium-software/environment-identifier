@@ -128,6 +128,8 @@ html {
 ## Type Setup
 Create a type called "Environment"
 
+![Type Setup](images/EnvironmentType.png)
+
 #### Manual Type Creation
 1. Add a type called "Environment" to the types collection in the Stadium Application Explorer
 2. Add the following properties to the type
@@ -135,10 +137,11 @@ Create a type called "Environment"
    2. class (Any)
    3. title (Any)
 
-![Type Setup](images/EnvironmentType.png)
-
 #### Type Import
 1. Right-click on the `Types` node in the `Application Explorer`
+
+![Type Import](images/TypeImport.png)
+
 2. In the `Import Type` popup
     1. Add "SelectedFilters" into the `Name` input field
     2. Copy & paste the JSON below into the main input area
